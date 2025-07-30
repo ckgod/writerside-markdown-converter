@@ -1,29 +1,33 @@
+// changelog -> 로그 관리를 위한 클래스, markdown 형식을 html로 변환하는 데 사용됨
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 plugins {
-    id("java") // Java support
-    alias(libs.plugins.kotlin) // Kotlin support
-    alias(libs.plugins.intelliJPlatform) // IntelliJ Platform Gradle Plugin
-    alias(libs.plugins.changelog) // Gradle Changelog Plugin
-    alias(libs.plugins.qodana) // Gradle Qodana Plugin
+    id("java") // 자바 지원을 위한 플러그인
+    alias(libs.plugins.kotlin) // Kotlin 지원을 위한 플러그인
+    alias(libs.plugins.intelliJPlatform) // IntelliJ 플랫폼 Gradle 플러그인
+    alias(libs.plugins.changelog) // JetBrains에서 제공하는 Gradle Changelog Plugin을 사용해 CHANGELOG.md 파일 관리, 패치, 릴리스 노트 생성 등에 활용
+    alias(libs.plugins.qodana) // Qodana - JetBrains에서 만든 AI 코드 리뷰어, 코드 정적 분석 후 버그, 성능 문제, 안 좋은 코드 습관 등 찾아내고 리포트 생성
     alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
+// 플러그인의 그룹 ID를 설정 - 플러그인 식별자
 group = providers.gradleProperty("pluginGroup").get()
+// 플러그인의 버전을 설정 - 배포 버전
 version = providers.gradleProperty("pluginVersion").get()
 
-// Set the JVM language level used to build the project.
+// kotlin 컴파일러가 JDK 21을 사용하도록 설정
 kotlin {
     jvmToolchain(21)
 }
 
-// Configure project's dependencies
 repositories {
+    // 라이브러리, 플러그인 다운로드할 기본 저장소 지정
     mavenCentral()
 
-    // IntelliJ Platform Gradle Plugin Repositories Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-repositories-extension.html
+    // Intellij Platform 관련 기본 저장소 지정
+    // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-repositories-extension.html
     intellijPlatform {
         defaultRepositories()
     }
@@ -34,27 +38,30 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.opentest4j)
 
-    // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
+    // intellij Platform 관련 설정
     intellijPlatform {
+        // platformType, platformVersion 값으로 IDE 종류와 버전 설정 (예 "IC", "2022.3" -> intellij community 2022.3 버전)
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
 
-        // Plugin Dependencies. Uses `platformBundledPlugins` property from the gradle.properties file for bundled IntelliJ Platform plugins.
+        // IDE에 미리 포함되어야 하는 bundled 플러그인 목록 설정 (예 git, kotlin, java 등)
         bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
 
-        // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
+        // JetBrains MarketPlace 에서 추가 설치 되어야 하는 platformPlugins 목록을 설정
         plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
 
-        testFramework(TestFrameworkType.Platform)
+        testFramework(TestFrameworkType.Platform)  // 플랫폼 테스트 프레임워크 설정
     }
 }
 
 // Configure IntelliJ Platform Gradle Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
 intellijPlatform {
+    // 플러그인(Plugin.xml 등)에 들어갈 여러 정보(버전, 설명, 체인지 노트 등)를 설정하는 블록
     pluginConfiguration {
         name = providers.gradleProperty("pluginName")
         version = providers.gradleProperty("pluginVersion")
 
-        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+        // README.md에서 특정 구간 파싱 - start, end 구간을 찾아 그 사이 내용을 HTML로 변환하여 플러그인 설명으로 설정
+        // 실제 plugin.xml 또는 Marketplatce 업로드 시 표시되는 설명이 됨
         description = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
@@ -67,6 +74,8 @@ intellijPlatform {
             }
         }
 
+        // CHANGELOG.md에서 현재 버전에 대한 릴리스 노트("changeNotes")를 추출해 자동으로 플러그인 메타 정보에 넣는다.
+        // renderItem과 withHeader(false), withEmptySections(false) 등을 통해 Markdown을 HTML 형태로 변환하여 릴리즈 노트로 활용한다.
         val changelog = project.changelog // local variable for configuration cache compatibility
         // Get the latest available change notes from the changelog file
         changeNotes = providers.gradleProperty("pluginVersion").map { pluginVersion ->
@@ -80,25 +89,31 @@ intellijPlatform {
             }
         }
 
+        // 플러그인이 호환되는 IDE 빌드 범위를 설정한다.
         ideaVersion {
             sinceBuild = providers.gradleProperty("pluginSinceBuild")
         }
     }
 
+    // 플러그인에 서명할 때 필요한 인증서 정보를 환경변수에서 로드
+    // MarketPlace에 서명된 플러그인을 제출하려면 설정이 필요함
     signing {
         certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
         privateKey = providers.environmentVariable("PRIVATE_KEY")
         password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
     }
 
+    // Marketplace나 다른 채널로 플러그인을 업로드할 때 필요한 설정
     publishing {
+        // MarketPlace에 인증된 토큰 값
         token = providers.environmentVariable("PUBLISH_TOKEN")
-        // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
-        // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
+
+        // channels 설정을 통해 버전이 2.1.7-alpha.3 같은 식이면 alpha 채널로 배포하는 방식의 로직을 처리
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels = providers.gradleProperty("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
     }
 
+    // JetBrains가 권장하는 다양한 IDE 버전에 대해 플러그인을 자동 검증하도록 세팅한다.
     pluginVerification {
         ides {
             recommended()
