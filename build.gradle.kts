@@ -37,6 +37,7 @@ repositories {
 dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.opentest4j)
+    implementation(libs.google.genai)
 
     // intellij Platform 관련 설정
     intellijPlatform {
