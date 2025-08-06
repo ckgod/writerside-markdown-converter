@@ -1,12 +1,10 @@
-package com.github.ckgod.markdownconverter.services
+package com.github.ckgod.markdownconverter.model.services
 
 import com.github.ckgod.markdownconverter.task.runBackgroundTask
 import com.google.genai.Client
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.project.ProjectManager
-import org.jetbrains.kotlin.idea.gradleTooling.get
 
 @Service(Service.Level.PROJECT)
 class GeminiApiService(private val project: Project) {

@@ -1,6 +1,6 @@
-package com.github.ckgod.markdownconverter.ui
+package com.github.ckgod.markdownconverter.view.uiimpl
 
-import com.github.ckgod.markdownconverter.services.GeminiApiService
+import com.github.ckgod.markdownconverter.model.services.GeminiApiService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.colors.EditorColorsManager
@@ -18,7 +18,7 @@ import java.awt.FlowLayout
 import javax.swing.*
 import javax.swing.plaf.basic.BasicSplitPaneUI
 
-class MarkdownConverterToolWindow(toolWindow: ToolWindow) {
+class MCToolWindow(toolWindow: ToolWindow) {
     private val project: Project = toolWindow.project
     private val geminiService = project.service<GeminiApiService>()
 
@@ -114,12 +114,12 @@ class MarkdownConverterToolWindow(toolWindow: ToolWindow) {
  * 이 클래스는 `plugin.xml` 파일의 `<toolWindow>` 확장점에 등록되어야 하며,
  * ID를 통해 인텔리제이 플랫폼이 인식하고 Tool Window를 초기화할 때 `createToolWindowContent` 메소드를 호출합니다.
  *
- * @see com.intellij.openapi.wm.ToolWindowFactory
+ * @see ToolWindowFactory
  */
 class MarkdownConverterToolWindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val myToolWindow = MarkdownConverterToolWindow(toolWindow)
-        val content = ContentFactory.getInstance().createContent(myToolWindow.getContents(), null, false)
+        val mcToolWindow = MCToolWindow(toolWindow)
+        val content = ContentFactory.getInstance().createContent(mcToolWindow.getContents(), null, false)
         toolWindow.contentManager.addContent(content)
     }
 
