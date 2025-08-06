@@ -4,9 +4,8 @@ import com.intellij.credentialStore.CredentialAttributes
 import com.intellij.credentialStore.Credentials
 import com.intellij.ide.passwordSafe.PasswordSafe
 import com.intellij.openapi.components.Service
-
-// Key 발급은 여기로 안내
-// https://aistudio.google.com/apikey
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Service(Service.Level.APP)
 class ApiKeyService {
@@ -18,7 +17,7 @@ class ApiKeyService {
 
     fun getApiKey(): String? = PasswordSafe.instance.getPassword(credentialAttributes)
 
-    fun saveApiKey(apiKey: String) {
+    suspend fun saveApiKey(apiKey: String) = withContext(Dispatchers.IO) {
         val credentials = Credentials("", apiKey)
         PasswordSafe.instance.set(credentialAttributes, credentials)
     }

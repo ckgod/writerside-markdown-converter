@@ -23,11 +23,24 @@ class MCToolWindowPresenter(
 
     fun onStartClicked(apiKey: String) {
         if (apiKey.isBlank()) {
-            view.showResult(MCBundle.message("errorKey"))
+            view.showApiKeyError(MCBundle.message("errorKey"))
             return
         }
+        view.showApiKeyError("")
 
+        presenterScope.launch {
+            view.showApiKeyValidationLoading(true)
+            try {
+                geminiApiService.validateApiKey(apiKey)
+                apiKeyService.saveApiKey(apiKey)
 
+                view.switchToMainPanel()
+            } catch (e: Exception) {
+                view.showApiKeyError(e.localizedMessage)
+            } finally {
+                view.showApiKeyValidationLoading(false)
+            }
+        }
     }
 
     fun onConvertClicked(inputText: String) {

@@ -50,6 +50,18 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
     override fun showResult(result: String) {
         converterPanel.outputEditor.setText(result)
     }
+
+    override fun showApiKeyError(message: String) {
+        entryPointPanel.showApiKeyError(message)
+    }
+
+    override fun showApiKeyValidationLoading(isLoading: Boolean) {
+        entryPointPanel.showLoading(isLoading)
+    }
+
+    override fun switchToMainPanel() {
+        mainCardLayout.show(mainPanel, CONVERTER_CARD)
+    }
 }
 
 class MarkdownConverterToolWindowFactory : ToolWindowFactory {
