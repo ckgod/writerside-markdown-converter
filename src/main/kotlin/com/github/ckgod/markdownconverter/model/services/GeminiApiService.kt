@@ -1,5 +1,6 @@
 package com.github.ckgod.markdownconverter.model.services
 
+import com.github.ckgod.markdownconverter.MCBundle
 import com.google.genai.Client
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
@@ -12,7 +13,7 @@ class GeminiApiService(private val project: Project) {
         val apiKey = service<ApiKeyService>().getApiKey()
 
         if (apiKey.isNullOrBlank()) {
-            return "Invalid API Key"
+            return MCBundle.message("errorKey")
         }
 
         val client = Client.builder()
@@ -22,6 +23,6 @@ class GeminiApiService(private val project: Project) {
             "gemini-2.5-flash",
             inputText,
             null
-        ).text() ?: "No Content"
+        ).text() ?: MCBundle.message("errorNoContent")
     }
 }

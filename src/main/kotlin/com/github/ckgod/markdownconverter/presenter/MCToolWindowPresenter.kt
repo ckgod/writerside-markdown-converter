@@ -1,5 +1,6 @@
 package com.github.ckgod.markdownconverter.presenter
 
+import com.github.ckgod.markdownconverter.MCBundle
 import com.github.ckgod.markdownconverter.model.services.GeminiApiService
 import com.github.ckgod.markdownconverter.view.`interface`.MCToolWindowView
 import com.intellij.openapi.components.service
@@ -21,7 +22,7 @@ class MCToolWindowPresenter(
     fun onConvertClicked() {
         val inputText = view.getInputText()
         if (inputText.isBlank()) {
-            view.showResult("텍스트를 입력하세요.")
+            view.showResult(MCBundle.message("errorNoInput"))
             return
         }
 

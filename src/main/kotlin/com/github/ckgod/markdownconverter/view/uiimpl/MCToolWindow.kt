@@ -1,5 +1,6 @@
 package com.github.ckgod.markdownconverter.view.uiimpl
 
+import com.github.ckgod.markdownconverter.MCBundle
 import com.github.ckgod.markdownconverter.presenter.MCToolWindowPresenter
 import com.github.ckgod.markdownconverter.view.`interface`.MCToolWindowView
 import com.github.ckgod.markdownconverter.view.utils.setEditorStyle
@@ -23,14 +24,18 @@ import javax.swing.*
 import javax.swing.plaf.basic.BasicSplitPaneUI
 
 class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
+    companion object {
+        private const val RESULT_CARD = "RESULT"
+        private const val LOADING_CARD = "LOADING"
+    }
     private val project: Project = toolWindow.project
     private val presenter = MCToolWindowPresenter(this, project)
 
     private val inputField: EditorTextField
     private val outputField: EditorTextField
 
-    private val convertButton = JButton("Convert")
-    private val loadingIcon = AsyncProcessIcon("Generating...")
+    private val convertButton = JButton(MCBundle.message("convert"))
+    private val loadingIcon = AsyncProcessIcon(MCBundle.message("generate"))
 
     private val resultCardLayout = CardLayout()
     private val resultPanel = JPanel(resultCardLayout)
@@ -54,7 +59,7 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
     fun getContents(): JComponent = mainPanel
 
     private fun createMainPanel(): JComponent {
-        val inputPanel = createEditorPanel(inputField, "Text to Convert")
+        val inputPanel = createEditorPanel(inputField, MCBundle.message("infoTextPlaceholder"))
         val controlPanel = createControlPanel()
         val resultContainerPanel = createResultPanel()
 
@@ -86,8 +91,8 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
             add(loadingIcon)
         }
         return resultPanel.apply {
-            add(editorCard, "EDITOR_CARD")
-            add(loadingCard, "LOADING_CARD")
+            add(editorCard, RESULT_CARD)
+            add(loadingCard, LOADING_CARD)
         }
     }
 
@@ -113,7 +118,7 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
         convertButton.isEnabled = !isLoading
         inputField.isEnabled = !isLoading
 
-        val cardToShow = if (isLoading) "LOADING_CARD" else "EDITOR_CARD"
+        val cardToShow = if (isLoading) LOADING_CARD else RESULT_CARD
         resultCardLayout.show(resultPanel, cardToShow)
     }
 
