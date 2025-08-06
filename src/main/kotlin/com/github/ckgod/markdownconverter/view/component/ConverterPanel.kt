@@ -30,6 +30,7 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
     val inputEditor: EditorTextField
     val outputEditor: EditorTextField
     val convertButton = JButton(MCBundle.message("convert"))
+    private val clearButton = JButton(MCBundle.message("clear"))
 
     private val resultCardLayout = CardLayout()
     private val resultPanel = JPanel(resultCardLayout)
@@ -50,6 +51,11 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
             .configureDefaults(0.5)
 
         add(mainSplit, BorderLayout.CENTER)
+
+        clearButton.addActionListener {
+            outputEditor.text = ""
+            inputEditor.text = ""
+        }
     }
 
     fun showLoading(isLoading: Boolean) {
@@ -69,6 +75,7 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
     private fun createControlPanel(): JComponent {
         return JPanel(FlowLayout(FlowLayout.CENTER)).apply {
             add(convertButton)
+            add(clearButton)
         }
     }
 
