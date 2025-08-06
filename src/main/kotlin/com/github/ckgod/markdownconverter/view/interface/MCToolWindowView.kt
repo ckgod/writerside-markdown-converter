@@ -1,4 +1,7 @@
 package com.github.ckgod.markdownconverter.view.`interface`
 
-class MCToolWindowView {
+interface MCToolWindowView {
+    fun getInputText(): String
+    fun showLoading(isLoading: Boolean)
+    fun showResult(result: String)
 }
