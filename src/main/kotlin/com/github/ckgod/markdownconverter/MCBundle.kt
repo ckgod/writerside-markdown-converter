@@ -15,7 +15,7 @@ private const val BUNDLE = "messages.MarkdownConverterBundle"
  *
  * @see DynamicBundle
  */
-object MarkdownConverterBundle : DynamicBundle(BUNDLE) {
+object MCBundle : DynamicBundle(BUNDLE) {
 
     /**
      * 지정된 키에 해당하는 메시지를 반환합니다.
