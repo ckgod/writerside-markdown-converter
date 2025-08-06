@@ -1,4 +1,4 @@
-package com.github.ckgod.markdownconverter.services
+package com.github.ckgod.markdownconverter.model.services
 
 import com.intellij.credentialStore.CredentialAttributes
 import com.intellij.credentialStore.Credentials
