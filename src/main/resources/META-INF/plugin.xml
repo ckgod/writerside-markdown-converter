@@ -9,7 +9,7 @@
     <resource-bundle>messages.MarkdownConverterBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ckgod.markdownconverter.toolWindow.MarkdownConverterToolWindowFactory" id="MarkdownConverterToolWindow"/>
+        <toolWindow factoryClass="com.github.ckgod.markdownconverter.ui.MarkdownConverterToolWindowFactory" id="MarkdownConverterToolWindow"/>
     </extensions>
 </idea-plugin>
 

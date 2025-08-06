@@ -1,21 +1,26 @@
-package com.github.ckgod.markdownconverter.toolWindow
+package com.github.ckgod.markdownconverter.ui
 
+import com.github.ckgod.markdownconverter.services.GeminiApiService
+import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.colors.EditorColorsScheme
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
+import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.EditorTextField
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBScrollPane
+import com.intellij.ui.content.ContentFactory
 import java.awt.FlowLayout
 import javax.swing.*
 import javax.swing.plaf.basic.BasicSplitPaneUI
 
 class MarkdownConverterToolWindow(toolWindow: ToolWindow) {
     private val project: Project = toolWindow.project
+    private val geminiService = project.service<GeminiApiService>()
 
     private val factory = EditorFactory.getInstance()
     private val inputDocument = factory.createDocument("")
@@ -36,7 +41,10 @@ class MarkdownConverterToolWindow(toolWindow: ToolWindow) {
 
     private fun setupActions() {
         convertButton.addActionListener {
-
+//
+//            geminiService.generateDocumentation(inputField.text) {
+//                outputField.setText(it)
+//            }
         }
     }
 
@@ -98,4 +106,22 @@ class MarkdownConverterToolWindow(toolWindow: ToolWindow) {
             }
         }
     }
+}
+
+/**
+ * 마크다운 변환기 플러그인의 메인 UI인 Tool Window를 생성합니다.
+ *
+ * 이 클래스는 `plugin.xml` 파일의 `<toolWindow>` 확장점에 등록되어야 하며,
+ * ID를 통해 인텔리제이 플랫폼이 인식하고 Tool Window를 초기화할 때 `createToolWindowContent` 메소드를 호출합니다.
+ *
+ * @see com.intellij.openapi.wm.ToolWindowFactory
+ */
+class MarkdownConverterToolWindowFactory : ToolWindowFactory {
+    override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
+        val myToolWindow = MarkdownConverterToolWindow(toolWindow)
+        val content = ContentFactory.getInstance().createContent(myToolWindow.getContents(), null, false)
+        toolWindow.contentManager.addContent(content)
+    }
+
+    override fun shouldBeAvailable(project: Project) = true
 }
