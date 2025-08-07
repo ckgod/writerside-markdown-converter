@@ -12,17 +12,17 @@ import kotlinx.coroutines.withContext
 @Service(Service.Level.PROJECT)
 class GeminiApiService(private val project: Project) {
 
-    suspend fun convert(inputText: String): String {
+    suspend fun convert(inputText: String): String = withContext(Dispatchers.IO) {
         val apiKey = service<ApiKeyService>().getApiKey()
 
         if (apiKey.isNullOrBlank()) {
-            return MCBundle.message("errorKey")
+            MCBundle.message("errorKey")
         }
 
         val client = Client.builder()
             .apiKey(apiKey).build()
 
-        return client.models.generateContent(
+        client.models.generateContent(
             "gemini-2.5-flash",
             inputText,
             null
