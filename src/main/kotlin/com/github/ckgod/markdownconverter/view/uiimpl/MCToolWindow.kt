@@ -1,9 +1,11 @@
 package com.github.ckgod.markdownconverter.view.uiimpl
 
+import com.github.ckgod.markdownconverter.model.services.ApiKeyService
 import com.github.ckgod.markdownconverter.presenter.MCToolWindowPresenter
 import com.github.ckgod.markdownconverter.view.component.ConverterPanel
 import com.github.ckgod.markdownconverter.view.component.EntryPointPanel
 import com.github.ckgod.markdownconverter.view.`interface`.MCToolWindowView
+import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -30,6 +32,9 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
 
         mainPanel.add(entryPointPanel, API_KEY_ENTRY_CARD)
         mainPanel.add(converterPanel, CONVERTER_CARD)
+        if (!service<ApiKeyService>().getApiKey().isNullOrBlank()) {
+            mainCardLayout.show(mainPanel, CONVERTER_CARD)
+        }
     }
 
     private fun setupActions() {
