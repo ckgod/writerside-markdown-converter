@@ -1,0 +1,8 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 4 H26 L32 10 V36 H10 V4 Z" fill="#424242"/>
+    <path d="M26 4 L26 10 H32 L26 4 Z" fill="#616161"/>
+
+    <text x="12" y="29" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#90CAF9">K</text>
+
+    <path d="M22 18 L28 18 L28 22 M28 18 L20 26" stroke="#64B5F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
