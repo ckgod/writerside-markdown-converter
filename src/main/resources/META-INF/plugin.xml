@@ -1,4 +1,10 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html
+<id>: 플러그인을 고유하게 식별하는 ID. 일반적으로 패키지 이름을 기반으로 합니다.
+<name> 및 <description>: 마켓플레이스와 설정 창에 표시될 사용자 대상 정보. HTML 태그를 사용하여 서식을 지정할 수 있습니다.
+<vendor>: 플러그인 개발자 또는 회사 정보.
+<idea-version>: 플러그인이 호환되는 IDE 버전을 since-build와 until-build 속성으로 지정합니다.
+<depends>: 다른 플러그인이나 핵심 IDE 모듈에 대한 의존성을 선언합니다. 예를 들어, 자바 관련 기능을 사용하려면 com.intellij.modules.java에 대한 의존성을 명시해야 합니다.
+<extensions>: 플러그인의 기능을 IDE에 통합하는 가장 중요한 부분입니다. 이 태그 안에 action, applicationService, projectConfigurable, toolWindow 등 모든 확장 포인트를 등록하게 됩니다.-->
 <idea-plugin>
     <id>com.github.ckgod.markdownconverter</id>
     <name>writerside-markdown-converter</name>
@@ -9,22 +15,6 @@
     <resource-bundle>messages.MarkdownConverterBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ckgod.markdownconverter.view.uiimpl.MarkdownConverterToolWindowFactory" id="MarkdownConverterToolWindow"/>
+        <toolWindow factoryClass="com.github.ckgod.markdownconverter.view.uiimpl.MarkdownConverterToolWindowFactory" id="K-Doc Converter"/>
     </extensions>
 </idea-plugin>
-
-<!--
-
-<id>: 플러그인을 고유하게 식별하는 ID. 일반적으로 패키지 이름을 기반으로 합니다.
-
-<name> 및 <description>: 마켓플레이스와 설정 창에 표시될 사용자 대상 정보. HTML 태그를 사용하여 서식을 지정할 수 있습니다.
-
-<vendor>: 플러그인 개발자 또는 회사 정보.
-
-<idea-version>: 플러그인이 호환되는 IDE 버전을 since-build와 until-build 속성으로 지정합니다.
-
-<depends>: 다른 플러그인이나 핵심 IDE 모듈에 대한 의존성을 선언합니다. 예를 들어, 자바 관련 기능을 사용하려면 com.intellij.modules.java에 대한 의존성을 명시해야 합니다.
-
-<extensions>: 플러그인의 기능을 IDE에 통합하는 가장 중요한 부분입니다. 이 태그 안에 action, applicationService, projectConfigurable, toolWindow 등 모든 확장 포인트를 등록하게 됩니다.
-
--->
