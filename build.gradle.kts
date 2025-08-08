@@ -1,4 +1,3 @@
-// changelog -> 로그 관리를 위한 클래스, markdown 형식을 html로 변환하는 데 사용됨
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
@@ -12,9 +11,7 @@ plugins {
     alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
-// 플러그인의 그룹 ID를 설정 - 플러그인 식별자
 group = providers.gradleProperty("pluginGroup").get()
-// 플러그인의 버전을 설정 - 배포 버전
 version = providers.gradleProperty("pluginVersion").get()
 
 // kotlin 컴파일러가 JDK 21을 사용하도록 설정
@@ -39,16 +36,17 @@ dependencies {
     testImplementation(libs.opentest4j)
     implementation(libs.google.genai)
 
+    // coroutines: SpillinKt ClassNotFound 에러 해결 - version catalog 에 선언하면 gradle sync 에러남 (원인 불명)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0")
+
     // intellij Platform 관련 설정
     intellijPlatform {
-        // platformType, platformVersion 값으로 IDE 종류와 버전 설정 (예 "IC", "2022.3" -> intellij community 2022.3 버전)
-        create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
+        intellijIdeaCommunity("2024.3.6")
 
-        // IDE에 미리 포함되어야 하는 bundled 플러그인 목록 설정 (예 git, kotlin, java 등)
-        bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
-
-        // JetBrains MarketPlace 에서 추가 설치 되어야 하는 platformPlugins 목록을 설정
-        plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+        // https://plugins.jetbrains.com/docs/intellij/plugin-dependencies.html#intellij-platform-gradle-plugin-2x
+        bundledPlugins("org.jetbrains.kotlin")
+        // bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
+        // plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
 
         testFramework(TestFrameworkType.Platform)  // 플랫폼 테스트 프레임워크 설정
     }
