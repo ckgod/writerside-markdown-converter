@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.github.ckgod.markdownconverter</id>
     <name>writerside-markdown-converter</name>
-    <vendor>ckgod</vendor>
+    <vendor email="xornjs759@naver.com">ckgod</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
