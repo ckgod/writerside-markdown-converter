@@ -6,8 +6,7 @@
 # K-Doc Converter
 
 -----
-An intelligent plugin that converts plain text or Markdown into a format optimized for JetBrains Writerside. Powered by the Google Gemini API, it supports translating foreign text into Korean before conversion.
-<br><br>
+
 일반 텍스트나 마크다운을 JetBrains Writerside에 최적화된 형식으로 변환하는 IntelliJ 플러그인입니다. Google Gemini API를 기반으로 동작하며, **영문 등의 외국어 텍스트를 한국어로 번역 후 변환**하는 기능을 지원하여 해외 기술 문서의 정리 및 작성을 돕습니다.
 
 ### ScreenShot
