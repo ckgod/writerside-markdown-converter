@@ -1,6 +1,6 @@
 ![Build](https://github.com/ckgod/writerside-markdown-converter/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/28161.svg)](https://plugins.jetbrains.com/plugin/28161)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/28161.svg)](https://plugins.jetbrains.com/plugin/28161)
 
 <!-- Plugin description -->
 # K-Doc Converter
@@ -11,7 +11,7 @@
 
 ### ScreenShot
 
-![img.png](images/example_usage.png)
+![img.png](https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_usage.png)
 
 ### Features
 
@@ -43,7 +43,7 @@ For more information, see our website.
 
 더 자세한 정보는 저희 웹사이트를 참조하십시오.
 ```
-![img.png](images/warning_example.png)
+![img.png](https://github.com/ckgod/writerside-markdown-converter/raw/main/images/warning_example.png)
 
 ### installation
 
@@ -54,11 +54,12 @@ For more information, see our website.
 
 - **JetBrains Marketplace 사용**:
 
-  [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)로 이동하여 IDE가 실행 중인 경우 <kbd>Install to ...</kbd> 버튼을 클릭하여 설치.
+  [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/28161)로 이동하여 IDE가 실행 중인 경우 <kbd>Install to ...</kbd> 버튼을 클릭하여 설치.
 
 
 ### Change Log
 
+[ChangeLog](https://github.com/ckgod/writerside-markdown-converter/blob/main/CHANGELOG.md)
 
 ### Contribute
 
