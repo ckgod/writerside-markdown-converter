@@ -21,7 +21,7 @@ class MCToolWindowPresenter(
     companion object {
         private const val REPLACE_TEXT = "[CKGOD]"
     }
-    private val geminiApiService = project.service<GeminiApiService>()
+    private val geminiApiService = service<GeminiApiService>()
     private val apiKeyService = service<ApiKeyService>()
 
     private val presenterScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)

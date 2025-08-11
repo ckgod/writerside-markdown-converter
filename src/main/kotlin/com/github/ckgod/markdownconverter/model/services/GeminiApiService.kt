@@ -10,7 +10,7 @@ import com.intellij.openapi.components.service
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-@Service(Service.Level.PROJECT)
+@Service(Service.Level.APP)
 class GeminiApiService() {
 
     suspend fun convert(inputText: String): String = withContext(Dispatchers.IO) {
