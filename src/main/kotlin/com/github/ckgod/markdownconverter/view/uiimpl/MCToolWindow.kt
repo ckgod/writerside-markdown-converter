@@ -53,7 +53,7 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
     }
 
     override fun showResult(result: String) {
-        converterPanel.outputEditor.setText(result)
+        converterPanel.outputEditor.text = result
     }
 
     override fun showApiKeyError(message: String) {

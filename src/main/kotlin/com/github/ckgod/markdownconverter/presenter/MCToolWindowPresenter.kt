@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 
 class MCToolWindowPresenter(
     private val view: MCToolWindowView,
-    private val project: Project
+    project: Project
 ) {
     companion object {
         private const val REPLACE_TEXT = "[CKGOD]"
