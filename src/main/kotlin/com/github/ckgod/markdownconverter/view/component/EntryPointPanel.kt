@@ -51,7 +51,7 @@ class EntryPointPanel : JPanel() {
 
     fun showApiKeyError(message: String) {
         errorLabel.text = message
-        errorLabel.isVisible = !message.isBlank()
+        errorLabel.isVisible = message.isNotBlank()
     }
 
     fun showLoading(isLoading: Boolean) {
