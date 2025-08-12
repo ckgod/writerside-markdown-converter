@@ -17,8 +17,9 @@ class ApiKeyService {
 
     fun getApiKey(): String? = PasswordSafe.instance.getPassword(credentialAttributes)
 
-    suspend fun saveApiKey(apiKey: String) = withContext(Dispatchers.IO) {
+    suspend fun saveApiKey(apiKey: String, onSuccess: (() -> Unit)? = null) = withContext(Dispatchers.IO) {
         val credentials = Credentials("", apiKey)
         PasswordSafe.instance.set(credentialAttributes, credentials)
+        onSuccess?.invoke()
     }
 }

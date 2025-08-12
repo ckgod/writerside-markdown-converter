@@ -1,10 +1,12 @@
 package com.github.ckgod.markdownconverter.view.uiimpl
 
+import com.github.ckgod.markdownconverter.action.OpenSettingsAction
 import com.github.ckgod.markdownconverter.model.services.ApiKeyService
 import com.github.ckgod.markdownconverter.presenter.MCToolWindowPresenter
 import com.github.ckgod.markdownconverter.view.component.ConverterPanel
 import com.github.ckgod.markdownconverter.view.component.EntryPointPanel
 import com.github.ckgod.markdownconverter.view.`interface`.MCToolWindowView
+import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
@@ -74,6 +76,7 @@ class MarkdownConverterToolWindowFactory : ToolWindowFactory {
         val mcToolWindow = MCToolWindow(toolWindow)
         val content = ContentFactory.getInstance().createContent(mcToolWindow.getContents(), null, false)
         toolWindow.contentManager.addContent(content)
+        toolWindow.setAdditionalGearActions(DefaultActionGroup(OpenSettingsAction(project)))
     }
 
     override fun shouldBeAvailable(project: Project) = true
