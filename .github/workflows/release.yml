@@ -66,9 +66,9 @@ jobs:
         run: |
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
-      # Create prompt file from GitHub secret
+      # Create prompt file from secret
       - name: Create prompt file from secret
-        run: echo "${{ secrets.PROMPT_TEXT }}" > src/main/resources/prompts/converter_prompt.txt
+        run: echo '${{ secrets.PROMPT_TEXT }}' > src/main/resources/prompts/converter_prompt.txt
 
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
