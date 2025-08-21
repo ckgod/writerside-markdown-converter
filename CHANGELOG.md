@@ -2,7 +2,12 @@
 
 # writerside-markdown-converter Changelog
 
-## [Unreleased]
+## [2.0.1] - 2025-08-21
+
+### Fixed
+- Fix the prompt bug
+
+## [2.0.0] - 2025-08-21
 
 ### Added
 - Support for multiple target languages for translation, including Korean, Japanese, and English.
