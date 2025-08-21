@@ -26,7 +26,7 @@ class SettingsConfigurable : Configurable, SettingsView {
         }
     }
 
-    override fun getDisplayName(): @NlsContexts.ConfigurableName String? = "K-Doc Converter"
+    override fun getDisplayName(): @NlsContexts.ConfigurableName String? = "Writerside Markdown Converter"
 
     override fun createComponent(): JComponent? {
         reset()

@@ -9,7 +9,7 @@ import com.intellij.openapi.project.Project
 
 class OpenSettingsAction(private val project: Project) : AnAction(
     "Settings",
-    "Open K-Doc Converter settings",
+    "Open Writerside Markdown Converter settings",
     AllIcons.General.GearPlain
 ) {
     override fun actionPerformed(p0: AnActionEvent) {
