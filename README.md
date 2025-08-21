@@ -3,7 +3,7 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/28161.svg)](https://plugins.jetbrains.com/plugin/28161)
 
 <!-- Plugin description -->
-# K-Doc Converter
+# Writerside Markdown Converter
 
 -----
 
@@ -51,7 +51,7 @@ For more information, see our website.
 
 - **IDE 내장 플러그인 시스템 사용**:
 
-    <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "K-doc Converter"</kbd> >
+    <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Writerside Markdown Converter"</kbd> >
   <kbd>Install</kbd>
 
 - **JetBrains Marketplace 사용**:

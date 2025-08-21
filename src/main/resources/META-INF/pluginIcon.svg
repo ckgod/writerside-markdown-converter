@@ -1,8 +1,20 @@
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 4 H26 L32 10 V36 H10 V4 Z" fill="white"/>
-    <path d="M26 4 L26 10 H32 L26 4 Z" fill="#E0E0E0"/>
-
-    <text x="12" y="29" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E88E5">K</text>
-
-    <path d="M22 18 L28 18 L28 22 M28 18 L20 26" stroke="#42A5F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <defs>
+        <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white"/>
+            <stop offset="0.7" stop-color="#E91E63"/>
+            <stop offset="1" stop-color="#9C27B0"/>
+        </linearGradient>
+    </defs>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 10H30V35H5V10ZM10.5555 29.4445H24.4444V26.6668H10.5555V29.4445Z"
+          fill="url(#gradient)"/>
+    <path d="M7 7L34 7" stroke="url(#gradient)" stroke-width="2"/>
+    <path d="M33 6V21" stroke="url(#gradient)" stroke-width="2"/>
+    <mask id="mask0_502_10" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="32" y="22" width="8" height="13">
+        <path d="M32 22L39.5 28.25L32 34.5" fill="white"/>
+    </mask>
+    <g mask="url(#mask0_502_10)">
+        <path d="M39.4999 28.2501L41.1004 30.1706C41.6704 29.6956 41.9999 28.9921 41.9999 28.2501C41.9999 27.5081 41.6704 26.8046 41.1004 26.3296L39.4999 28.2501ZM31.9999 22.0001L30.3994 23.9207L37.8994 30.1706L39.4999 28.2501L41.1004 26.3296L33.6004 20.0796L31.9999 22.0001ZM39.4999 28.2501L37.8994 26.3296L30.3994 32.5796L31.9999 34.5001L33.6004 36.4206L41.1004 30.1706L39.4999 28.2501Z"
+              fill="url(#gradient)"/>
+    </g>
 </svg>

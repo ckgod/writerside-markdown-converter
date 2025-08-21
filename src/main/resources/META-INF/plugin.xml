@@ -7,7 +7,7 @@
 <extensions>: 플러그인의 기능을 IDE에 통합하는 가장 중요한 부분입니다. 이 태그 안에 action, applicationService, projectConfigurable, toolWindow 등 모든 확장 포인트를 등록하게 됩니다.-->
 <idea-plugin>
     <id>com.github.ckgod.markdownconverter</id>
-    <name>K-Doc Converter</name>
+    <name>Writerside Markdown Converter</name>
     <vendor email="xornjs759@naver.com">ckgod</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -15,12 +15,12 @@
     <resource-bundle>messages.MarkdownConverterBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ckgod.markdownconverter.view.uiimpl.MarkdownConverterToolWindowFactory" id="K-Doc Converter"
+        <toolWindow factoryClass="com.github.ckgod.markdownconverter.view.uiimpl.MarkdownConverterToolWindowFactory" id="Writerside Markdown Converter"
         anchor="right" icon="/icons/toolWindowIcon.svg"/>
         <applicationConfigurable
             parentId="tools"
             instance="com.github.ckgod.markdownconverter.configure.SettingsConfigurable"
             id="com.github.ckgod.markdownconverter.configure.SettingsConfigurable"
-            displayName="K-Doc Converter" />
+            displayName="Writerside Markdown Converter" />
     </extensions>
 </idea-plugin>

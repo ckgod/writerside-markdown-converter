@@ -1,8 +1,11 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="6" y="28" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
-          fill="#ffffff">K</text>
-
-    <path d="M26 12 L32 12 L32 16 M32 12 L18 26"
-          stroke="#ffffff"
-          stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 4H12V14H2V4ZM4.22222 11.7778H9.77778V10.6667H4.22222V11.7778Z"
+          fill="#BDBDBD"/>
+    <line x1="3" y1="2.5" x2="14" y2="2.5" stroke="#BDBDBD"/>
+    <line x1="13.5" y1="2" x2="13.5" y2="8" stroke="#BDBDBD"/>
+    <mask id="path-4-inside-1_5106_427" fill="white">
+        <path d="M13 9L16 11.5L13 14"/>
+    </mask>
+    <path d="M16 11.5L16.6402 12.2682C16.8682 12.0782 17 11.7968 17 11.5C17 11.2032 16.8682 10.9218 16.6402 10.7318L16 11.5ZM13 9L12.3598 9.76822L15.3598 12.2682L16 11.5L16.6402 10.7318L13.6402 8.23178L13 9ZM16 11.5L15.3598 10.7318L12.3598 13.2318L13 14L13.6402 14.7682L16.6402 12.2682L16 11.5Z"
+          fill="#BDBDBD" mask="url(#path-4-inside-1_5106_427)"/>
 </svg>
