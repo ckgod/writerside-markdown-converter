@@ -3,6 +3,7 @@ package com.github.ckgod.markdownconverter.presenter
 import com.github.ckgod.markdownconverter.MCBundle
 import com.github.ckgod.markdownconverter.model.services.ApiKeyService
 import com.github.ckgod.markdownconverter.model.services.GeminiApiService
+import com.github.ckgod.markdownconverter.model.types.Language
 import com.github.ckgod.markdownconverter.view.`interface`.MCToolWindowView
 import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.components.service
@@ -19,7 +20,9 @@ class MCToolWindowPresenter(
     project: Project
 ) {
     companion object {
-        private const val REPLACE_TEXT = "[CKGOD]"
+        private const val REPLACE_INPUT = "[INPUT]"
+        private const val REPLACE_MODE = "[TRANS_MODE]"
+        private const val REPLACE_LANG = "[TRANS_LANG]"
     }
     private val geminiApiService = service<GeminiApiService>()
     private val apiKeyService = service<ApiKeyService>()
@@ -48,7 +51,7 @@ class MCToolWindowPresenter(
         }
     }
 
-    fun onConvertClicked(inputText: String) {
+    fun onConvertClicked(inputText: String, language: Language = Language.FormatOnly) {
         if (inputText.isBlank()) {
             view.showResult(MCBundle.message("errorNoInput"))
             return
@@ -57,7 +60,11 @@ class MCToolWindowPresenter(
         presenterScope.launch {
             view.showLoading(true)
             try {
-                val prompt = loadPrompt().replace(REPLACE_TEXT, inputText)
+                val prompt = loadPrompt()
+                    .replace(REPLACE_INPUT, inputText)
+                    .replace(REPLACE_MODE, language.translationModeForPrompt)
+                    .replace(REPLACE_LANG, language.targetLanguageForPrompt)
+
                 val result = geminiApiService.convert(prompt)
                 view.showResult(result)
             } catch (e: Exception) {
