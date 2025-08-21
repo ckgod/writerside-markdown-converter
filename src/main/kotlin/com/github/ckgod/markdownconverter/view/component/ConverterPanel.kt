@@ -1,11 +1,13 @@
 package com.github.ckgod.markdownconverter.view.component
 
 import com.github.ckgod.markdownconverter.MCBundle
+import com.github.ckgod.markdownconverter.model.types.Language
 import com.github.ckgod.markdownconverter.view.utils.setEditorStyle
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.ComboBox
 import com.intellij.ui.EditorTextField
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
@@ -30,6 +32,9 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
     val inputEditor: EditorTextField
     val outputEditor: EditorTextField
     val convertButton = JButton(MCBundle.message("convert"))
+    private val comboBox = ComboBox(Language.all())
+    val selectedOption get() = comboBox.selectedItem as Language
+
     private val clearButton = JButton(MCBundle.message("clear"))
 
     private val resultCardLayout = CardLayout()
@@ -74,6 +79,7 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
 
     private fun createControlPanel(): JComponent {
         return JPanel(FlowLayout(FlowLayout.CENTER)).apply {
+            add(comboBox)
             add(convertButton)
             add(clearButton)
         }

@@ -41,7 +41,7 @@ class MCToolWindow(toolWindow: ToolWindow): MCToolWindowView {
 
     private fun setupActions() {
         converterPanel.convertButton.addActionListener {
-            presenter.onConvertClicked(converterPanel.inputEditor.text)
+            presenter.onConvertClicked(converterPanel.inputEditor.text, converterPanel.selectedOption)
         }
         entryPointPanel.saveButton.addActionListener {
             presenter.onStartClicked(String(entryPointPanel.apiKeyField.password))
