@@ -2,6 +2,8 @@
 
 # writerside-markdown-converter Changelog
 
+## [Unreleased]
+
 ## [2.0.1] - 2025-08-21
 
 ### Fixed
