@@ -33,7 +33,7 @@ dependencies {
     implementation(libs.google.genai)
 
     // kotlin.stdlib.default.dependency = false
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.20")
 
     intellijPlatform {
         intellijIdeaCommunity("2024.3.6")
