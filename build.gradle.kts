@@ -36,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0")
 
     intellijPlatform {
-        intellijIdeaCommunity("2024.3.6")
+        intellijIdeaCommunity("2024.3")
         bundledPlugins("org.jetbrains.kotlin")
         testFramework(TestFrameworkType.Platform)
     }
@@ -89,7 +89,8 @@ intellijPlatform {
 
     pluginVerification {
         ides {
-            recommended()
+            ide("IC", "2024.2.5")
+            ide("IC", "2024.3")
         }
     }
 }
