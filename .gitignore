@@ -7,3 +7,4 @@ build
 
 # Prompts
 /src/main/resources/prompts/converter_prompt.txt
+/.claude/
