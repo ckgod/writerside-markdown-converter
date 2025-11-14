@@ -2,16 +2,14 @@
 
 # writerside-markdown-converter Changelog
 
-## [Unreleased]
-
 ## [2.0.3] - 2025-11-14
 
-## Changed
+### Changed
 - Change API Key Storage Strategy from PasswordSafe to PropertiesComponent
 
 ## [2.0.2] - 2025-08-27
 
-## Changed
+### Changed
 - Change API Key Storage Strategy from PasswordSafe to PropertiesComponent
 
 ## [2.0.1] - 2025-08-21
