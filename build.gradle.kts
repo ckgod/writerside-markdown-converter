@@ -36,9 +36,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0")
 
     intellijPlatform {
-        intellijIdeaCommunity("2024.3")
+        create(providers.gradleProperty("targetPlatform"), providers.gradleProperty("targetPlatformVersion")) {
+            this.useInstaller.set(false)
+        }
         bundledPlugins("org.jetbrains.kotlin")
         testFramework(TestFrameworkType.Platform)
+        jetbrainsRuntime()
     }
 }
 
@@ -89,8 +92,9 @@ intellijPlatform {
 
     pluginVerification {
         ides {
-            ide("IC", "2024.2.5")
-            ide("IC", "2024.3")
+            create(providers.gradleProperty("targetPlatform"), providers.gradleProperty("targetPlatformVersion")) {
+                this.useInstaller.set(false)
+            }
         }
     }
 }
