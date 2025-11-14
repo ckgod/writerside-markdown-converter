@@ -17,12 +17,19 @@ class SettingsConfigurable : Configurable, SettingsView {
     private val apiKeyService = service<ApiKeyService>()
     private val apiKeyPanel = ApiKeyCertificationPanel()
     private val testButton = JButton(MCBundle.message("apiConnectionTestLabel"))
+    private val clearButton = JButton("Clear API Key")
     private var originApiKey: String = ""
 
     init {
         testButton.addActionListener {
-            println("--- DEBUG: Test Button Clicked! ---")
             settingsPresenter.onConnectedClick(String(apiKeyPanel.apiKeyField.password))
+        }
+
+        clearButton.addActionListener {
+            apiKeyService.deleteApiKey()
+            apiKeyPanel.apiKeyField.text = ""
+            originApiKey = ""
+            apiKeyPanel.showApiKeySuccess("API Key cleared successfully. Close and reopen the tool window to see the entry panel.")
         }
     }
 
@@ -36,6 +43,7 @@ class SettingsConfigurable : Configurable, SettingsView {
             }
             row {
                 cell(testButton)
+                cell(clearButton)
             }
         }
     }
