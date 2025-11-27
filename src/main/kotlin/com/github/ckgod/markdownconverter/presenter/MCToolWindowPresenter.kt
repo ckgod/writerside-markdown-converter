@@ -92,7 +92,7 @@ class MCToolWindowPresenter(
             "prompt_persona.txt",
             "prompt_task_directive.txt",
             processingRulesFile,
-            "prompt_security_ouput_control.txt",
+            "prompt_security_output_control.txt",
             "prompt_instruction_footer.txt"
         )
 

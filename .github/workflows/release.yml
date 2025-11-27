@@ -70,7 +70,13 @@ jobs:
       - name: Create prompt file from secret
         run: |
           mkdir -p ./src/main/resources/prompts
-          echo '${{ secrets.PROMPT_TEXT }}' > ./src/main/resources/prompts/converter_prompt.txt
+          echo '${{ secrets.PROMPT_HEADER }}' > ./src/main/resources/prompts/prompt_instruction_header.txt
+          echo '${{ secrets.PROMPT_PERSONA }}' > ./src/main/resources/prompts/prompt_persona.txt
+          echo '${{ secrets.PROMPT_TASK_DIRECTIVE }}' > ./src/main/resources/prompts/prompt_task_directive.txt
+          echo '${{ secrets.PROMPT_RULE_BASIC }}' > ./src/main/resources/prompts/prompt_processing_rules_basic.txt
+          echo '${{ secrets.PROMPT_RULE_ADVANCED }}' > ./src/main/resources/prompts/prompt_processing_rules_advanced.txt
+          echo '${{ secrets.PROMPT_SECURITY_OUTPUT_CONTROL }}' > ./src/main/resources/prompts/prompt_security_output_control.txt
+          echo '${{ secrets.PROMPT_FOOTER }}' > ./src/main/resources/prompts/prompt_instruction_footer.txt
 
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
