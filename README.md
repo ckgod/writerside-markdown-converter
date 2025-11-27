@@ -11,7 +11,7 @@ An intelligent plugin that converts plain text or Markdown into a format optimiz
 
 ### ScreenShot
 
-<img src="https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_usage.png" width="50%" alt="example usage">
+<img src="https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_usage.png" width="80%" alt="example usage">
 
 ### Features
 
@@ -65,7 +65,7 @@ If you are using MySQL, set the port to 3306.
 
 **Rendering Output ↓**
 
-<img src="https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_rendering.png" width="50%" alt="example rendering">
+<img src="https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_rendering.png" alt="example rendering">
 
 ### Installation
 
