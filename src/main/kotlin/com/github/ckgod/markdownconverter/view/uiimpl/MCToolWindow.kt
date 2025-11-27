@@ -50,7 +50,11 @@ class MCToolWindow(private val toolWindow: ToolWindow): MCToolWindowView {
 
     private fun setupActions() {
         converterPanel.convertButton.addActionListener {
-            presenter.onConvertClicked(converterPanel.inputEditor.text, converterPanel.selectedOption)
+            presenter.onConvertClicked(
+                converterPanel.inputEditor.text,
+                converterPanel.selectedOption,
+                converterPanel.isSemanticMarkupEnabled
+            )
         }
         entryPointPanel.saveButton.addActionListener {
             presenter.onStartClicked(String(entryPointPanel.apiKeyField.password))

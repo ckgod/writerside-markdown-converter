@@ -18,6 +18,7 @@ import java.awt.CardLayout
 import java.awt.FlowLayout
 import java.awt.GridBagLayout
 import javax.swing.JButton
+import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.JSplitPane
@@ -34,6 +35,8 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
     val convertButton = JButton(MCBundle.message("convert"))
     private val comboBox = ComboBox(Language.all())
     val selectedOption get() = comboBox.selectedItem as Language
+    private val semanticMarkupCheckBox = JCheckBox("Semantic Markup")
+    val isSemanticMarkupEnabled get() = semanticMarkupCheckBox.isSelected
 
     private val clearButton = JButton(MCBundle.message("clear"))
 
@@ -80,6 +83,7 @@ class ConverterPanel(project: Project) : JPanel(BorderLayout()) {
     private fun createControlPanel(): JComponent {
         return JPanel(FlowLayout(FlowLayout.CENTER)).apply {
             add(comboBox)
+            add(semanticMarkupCheckBox)
             add(convertButton)
             add(clearButton)
         }

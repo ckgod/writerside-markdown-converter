@@ -51,7 +51,7 @@ class MCToolWindowPresenter(
         }
     }
 
-    fun onConvertClicked(inputText: String, language: Language = Language.FormatOnly) {
+    fun onConvertClicked(inputText: String, language: Language = Language.FormatOnly, semanticMarkup: Boolean = false) {
         if (inputText.isBlank()) {
             view.showResult(MCBundle.message("errorNoInput"))
             return
@@ -60,7 +60,7 @@ class MCToolWindowPresenter(
         presenterScope.launch {
             view.showLoading(true)
             try {
-                val prompt = loadPrompt()
+                val prompt = loadPrompt(semanticMarkup)
                     .replace(REPLACE_INPUT, inputText)
                     .replace(REPLACE_MODE, language.translationModeForPrompt)
                     .replace(REPLACE_LANG, language.targetLanguageForPrompt)
@@ -76,13 +76,30 @@ class MCToolWindowPresenter(
         }
     }
 
-    private suspend fun loadPrompt(): String = withContext(Dispatchers.IO) {
+    private suspend fun loadPrompt(semanticMarkup: Boolean): String = withContext(Dispatchers.IO) {
         val pluginId = PluginId.getId("com.github.ckgod.markdownconverter")
         val pluginClassLoader = PluginManagerCore.getPlugin(pluginId)?.pluginClassLoader
             ?: throw IllegalStateException("No plugin loader found for $pluginId")
-        val inputStream = pluginClassLoader.getResourceAsStream("prompts/converter_prompt.txt")
-            ?: throw IllegalStateException("Resource file not found: prompts/converter_prompt.txt")
 
-        inputStream.bufferedReader(Charsets.UTF_8).readText()
+        val processingRulesFile = if (semanticMarkup) {
+            "prompt_processing_rules_advanced.txt"
+        } else {
+            "prompt_processing_rules_basic.txt"
+        }
+
+        val promptFiles = listOf(
+            "prompt_instruction_header.txt",
+            "prompt_persona.txt",
+            "prompt_task_directive.txt",
+            processingRulesFile,
+            "prompt_security_ouput_control.txt",
+            "prompt_instruction_footer.txt"
+        )
+
+        promptFiles.joinToString("\n\n") { fileName ->
+            val inputStream = pluginClassLoader.getResourceAsStream("prompts/$fileName")
+                ?: throw IllegalStateException("Resource file not found: prompts/$fileName")
+            inputStream.bufferedReader(Charsets.UTF_8).readText()
+        }
     }
 }
