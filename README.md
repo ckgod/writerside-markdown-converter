@@ -11,12 +11,13 @@ An intelligent plugin that converts plain text or Markdown into a format optimiz
 
 ### ScreenShot
 
-![img.png](https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_usage.png)
+<img src="https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_usage.png" width="50%" alt="example usage">
 
 ### Features
 
 * **AI-Powered Document Conversion**: Utilizes the Google Gemini API to automatically convert text into Writerside-compliant Markdown.
 * **Multi-Language Translation & Conversion**: Supports translating text from various source languages into a selected target language before formatting.
+* **Semantic Markup Support**: Automatically converts plain text into Writerside's semantic markup elements such as `<ui-path>`, `<shortcut>`, `<warning>`, and `<tabs>`, enabling rich documentation formatting with enhanced readability and interactive components.
 * **Intuitive UI**: A dedicated Tool Window provides a seamless experience for input, conversion, and result verification all in one place.
 
 ### Usage
@@ -29,20 +30,42 @@ An intelligent plugin that converts plain text or Markdown into a format optimiz
 **Input Text:**
 
 ```
-Warning: This is a critical update. All users must update before Friday.
-For more information, see our website.
+## Database Configuration
+
+To configure the connection, navigate to File > Settings > Database.
+You can press Ctrl+Alt+S to open settings quickly.
+
+Warning: Do not share your production credentials in the chat.
+
+If you are using PostgreSQL, set the port to 5432.
+If you are using MySQL, set the port to 3306.
 ```
 
-**Output (Writerside Markdown, after translating to Korean):**
+**Output (Writerside Markdown, Use Semantic Markup):**
 
-```markdown
-> 경고: 이것은 중요한 업데이트입니다.
-> 모든 사용자는 금요일까지 업데이트해야 합니다.
-{style="warning"}
-
-더 자세한 정보는 저희 웹사이트를 참조하십시오.
 ```
-![img.png](https://github.com/ckgod/writerside-markdown-converter/raw/main/images/warning_example.png)
+## Database Configuration {#database-configuration}
+
+To configure the connection, navigate to <ui-path>File | Settings | Database</ui-path>.
+You can press <shortcut>Ctrl+Alt+S</shortcut> to open settings quickly.
+
+<warning>
+Do not share your production credentials in the chat.
+</warning>
+
+<tabs>
+<tab title="PostgreSQL">
+If you are using PostgreSQL, set the port to 5432.
+</tab>
+<tab title="MySQL">
+If you are using MySQL, set the port to 3306.
+</tab>
+</tabs>
+```
+
+**Rendering Output ↓**
+
+<img src="https://github.com/ckgod/writerside-markdown-converter/raw/main/images/example_rendering.png" width="50%" alt="example rendering">
 
 ### Installation
 
