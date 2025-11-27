@@ -4,6 +4,7 @@ import com.intellij.credentialStore.CredentialAttributes
 import com.intellij.ide.passwordSafe.PasswordSafe
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.components.Service
+import com.intellij.openapi.diagnostic.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.Base64
@@ -11,6 +12,7 @@ import java.util.Base64
 @Service(Service.Level.APP)
 class ApiKeyService {
     companion object {
+        private val logger = Logger.getInstance(ApiKeyService::class.java)
         private const val API_KEY_PROPERTY = "com.github.ckgod.markdownconverter.apikey"
         private const val LEGACY_SERVICE_NAME = "com.github.ckgod.markdownconverter"
     }
@@ -38,7 +40,9 @@ class ApiKeyService {
         val encoded = properties.getValue(API_KEY_PROPERTY) ?: return null
         return try {
             String(Base64.getDecoder().decode(encoded))
-        } catch (_: IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
+            logger.warn("Failed to decode API key", e)
+            System.err.println("Failed to decode API key: ${e.message}")
             null
         }
     }
